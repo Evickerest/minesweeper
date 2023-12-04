@@ -17,9 +17,10 @@ const gameButtons = document.querySelectorAll("input[name='game']");
 gameButtons[2].checked = true;
 
 
+
 // determines how large the open area is upon first click
 // "3" represents a 3x3 box, e.g. 7 would represent a 7x7 box
-const widthOfOpenSpace = 3;
+let widthOfOpenSpace = 3;
 
 let COLORS = ["#0000ff","#008000","#ff0000","#00008b","#a52a2a","#00ffff","#000000","#808080"];
 
@@ -76,3 +77,12 @@ const GAMES = {
         "Mines": 145,
     }
 }
+
+//presets
+const presets = {
+    "Default": ["#a4ffa4","#61fd6d", "#ffffff","#F0F8FF","0","360","90","100","50","70",["#0000ff","#008000","#ff0000","#00008b","#a52a2a","#00ffff","#000000","#808080"],"#000000","#ffff00","#000000",true,"#000000",3],
+    "Summer": ["#ffd9a3","#febc9f", "#f0ffd1","#ffffff","0","360","90","100","50","70",["#0000ff","#008000","#ff0000","#00008b","#a52a2a","#00ffff","#000000","#808080"],"#000000","#9c7126","#000000",true,"#79510c",3],
+    "1s and 0s": ["#000000","#000000", "#000000","#000000","0","0","0","0","0","0",["#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff","#ffffff"],"#ffffff","#000000","#ffffff",true,"#ffffff",3],
+    "Good Luck": ["#ff0000","#ff0000", "#000000","#000000","360","360","100","100","50","50",["#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000"],"#ff0000","#ff0000","#000000",false,"#000000",3],
+}
+
