@@ -9,6 +9,7 @@ function randomColor() {
     return `hsl(${h},${s}%,${l}%)`;
 }
 
+
 const settingsButton = document.querySelector(".settings");
 const settingsMenu = document.querySelector(".settings-menu");
 const closeModal = document.querySelector("#close-modal");
@@ -37,6 +38,11 @@ const displayBorder = document.querySelector("#display-border");
 const borderColor = document.querySelector("#border-color");
 const borderSize = document.querySelector("#bordrr-size");
 
+const firstOpenSize = document.querySelector("#first-open-size");
+
+const presetButtons = document.querySelectorAll("input[name='preset']");
+presetButtons[0].checked = true;
+
 
 function resetTileColors(){
     for( i = 0; i < Height; i++){ 
@@ -50,6 +56,10 @@ function resetTileColors(){
             } else if( tile.flag){
                 tile.element.style.backgroundColor = FLAG_COLORS[0];
                 tile.element.firstChild.style.borderRight = `24px solid ${FLAG_COLORS[1]}`;
+            }
+            if(GameOver && tile.bomb){
+                tile.element.firstChild.style.backgroundColor = MINE_COLOR[0];
+                tile.element.style.backgroundColor = randomColor();
             }
             tile.openColor = TILE_COLORS[ (i+j) % 2 + 2];
             tile.closedColor =  TILE_COLORS[ (i + j)%2 ];
@@ -66,31 +76,54 @@ closeModal.addEventListener("click", () => {
 })
 
 resetModal.addEventListener("click", () => {
-    primaryClosed.value = "#a4ffa4";
-    secondaryClosed.value = "#61fd6d";
-    primaryOpen.value = "#ffffff";
-    secondaryOpen.value = "#F0F8FF";
-
-    minHue.value = "0";
-    maxHue.value = "360";
-    minSat.value = "90";
-    maxSat.value = "100";
-    minLig.value = "50";
-    maxLig.value = "70";
-
-    COLORS = ["#0000ff","#008000","#ff0000","#00008b","#a52a2a","#00ffff","#000000","#808080"];
-    numberColors.forEach( (input,index) => input.value = COLORS[index]);
-    
-    mineColor.value = "#000000";
-
-    flagBgcolor.value = "#ffff00";
-    flagColor.value = "#000000";
-
-    displayBorder.checked = true;
-    borderColor.value = "#000000";
+    resetSettings( presets["Default"] );
 })
 
+
+function resetSettings( preset ){
+    primaryClosed.value = preset[0];
+    secondaryClosed.value = preset[1];
+    primaryOpen.value = preset[2];
+    secondaryOpen.value = preset[3];
+
+    minHue.value = preset[4];
+    maxHue.value = preset[5];
+    minSat.value = preset[6];
+    maxSat.value = preset[7];
+    minLig.value = preset[8];
+    maxLig.value = preset[9];
+
+    COLORS = preset[10];
+    numberColors.forEach( (input,index) => input.value = COLORS[index]);
+    
+    mineColor.value = preset[11];
+
+    flagBgcolor.value = preset[12];
+    flagColor.value = preset[13];
+
+    displayBorder.checked = preset[14];
+    borderColor.value = preset[15];
+
+    widthOfOpenSpace = preset[16];
+    firstOpenSize.value = preset[16];
+
+    checkAllBorders();
+    resetTileColors();
+}
+
+
 submitModal.addEventListener("click", () => {
+
+    let presetChecked;
+    presetButtons.forEach(button => {
+        if(button.checked) presetChecked = button.value;
+    });
+
+    if( presetChecked != "Custom"){
+        resetSettings(presets[presetChecked]);
+    }
+
+
     settingsMenu.close();
     TILE_COLORS[0] = primaryClosed.value;
     TILE_COLORS[1] = secondaryClosed.value;
@@ -112,6 +145,8 @@ submitModal.addEventListener("click", () => {
 
     document.documentElement.style.setProperty('--border-color', borderColor.value);
     DisplayBorder = displayBorder.checked;
+
+    widthOfOpenSpace = firstOpenSize.value;
    
     checkAllBorders();
     resetTileColors();
