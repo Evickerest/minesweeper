@@ -220,6 +220,10 @@ body {
     row-gap: 5px;
 }
 
+#first-open-size {
+    max-width: 3rem;
+}
+
 .text-input > input {
     max-width: 2.7rem;
 }
@@ -254,4 +258,8 @@ body {
 
 .solid {
     border-top: 3px solid black;
+}
+
+.preset-container {
+    margin-left: 1rem;
 }
