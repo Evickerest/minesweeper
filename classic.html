@@ -78,7 +78,46 @@
                 </div>
             </div>
             <div class="header">
-                <h2>Mine Colors (min/max):</h2>
+                <h2>Tile Number</h2>
+                <hr class="solid">
+            </div>
+            <div class="number-color-grid">
+                <div class="number-color">
+                    <label>1</label>
+                    <input type="color" class="number-color-input" value="#0000ff">
+                </div>
+                <div class="number-color">
+                    <label>2</label>
+                    <input type="color" class="number-color-input" value="#008000">
+                </div>
+                <div class="number-color">
+                    <label>3</label>
+                    <input type="color" class="number-color-input" value="#ff0000">
+                </div>
+                <div class="number-color">
+                    <label>4</label>
+                    <input type="color" class="number-color-input" value="#00008b">
+                </div>
+                <div class="number-color">
+                    <label>5</label>
+                    <input type="color" class="number-color-input" value="#a52a2a">
+                </div>
+                <div class="number-color">
+                    <label>6</label>
+                    <input type="color" class="number-color-input" value="#00FFFF">
+                </div>
+                <div class="number-color">
+                    <label>7</label>
+                    <input type="color" class="number-color-input" value="#000000">
+                </div>
+                <div class="number-color">
+                    <label>8</label>
+                    <input type="color" class="number-color-input" value="#808080">
+                </div>
+               
+            </div>
+            <div class="header">
+                <h2>Mine Colors (min/max)</h2>
                 <hr class="solid">
             </div>
             <div class="color-min-max-container">
@@ -133,7 +172,10 @@
                     <input type="number" id="border-size" value="4">
                     <label for="border-size">Border Size (px)</label>
                 </div> -->
-
+            </div>
+            <div class="header">
+                <h2>Presets</h2>
+                <hr class="solid">
             </div>
             <div class="button-container">
                 <button id="close-modal">Close</button>
@@ -143,6 +185,9 @@
         </dialog>
         <div class="board"></div>
     </div>
-    <script type="text/javascript" src="classic.js"></script>
+    <script type="text/javascript" src="javascript/tile.js" defer></script>
+    <script type="text/javascript" src="javascript/constants.js" defer></script>
+    <script type="text/javascript" src="javascript/main.js" defer></script>
+    <script type="text/javascript" src="javascript/settings.js" defer></script>
 </body>
 </html>
